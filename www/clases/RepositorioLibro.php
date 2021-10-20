@@ -88,11 +88,13 @@ class RepositorioLibro
             $query->bind_param("i", $numeroLibro);
             $query->bind_result($titulo, $genero, $autor,$idUsuario);
 
+
             if ($query->execute()) {
                 if ($query->fetch()) {
                     $ru = new RepositorioUsuario();
                     $usuario = $ru->get_one($idUsuario);
                     return new Libro($usuario, $titulo, $genero, $autor, $numeroLibro);
+
                 }
             }
             return false;
@@ -105,21 +107,28 @@ class RepositorioLibro
     {
         $n = $libro->getId();
         $q = "DELETE FROM biblioteca WHERE ID_Libro = ?";
+
         $query = self::$conexion->prepare($q);
         $query->bind_param("i", $n);
         return ($query->execute());
     }
 
-   /* public function actualizarSaldo(Cuenta $cuenta)
-    {
-        $n = $cuenta->getNumero();
-        $s = $cuenta->getSaldo();
 
-        $q = "UPDATE cuentas SET saldo = ? WHERE numero = ?";
 
+public function actualizarGenero(Libro $libro)
+
+    {   
+        $numero = $libro-> getId();
+        $genero = $libro-> getGenero();
+      
+
+        $q = "UPDATE biblioteca SET Genero = ? WHERE ID_Libro = ?";
         $query = self::$conexion->prepare($q);
-        $query->bind_param("ii", $s, $n);
+        $query->bind_param("si", $genero,  $numero );
 
         return $query->execute();
-    }*/
+
+    }
+
+
 }

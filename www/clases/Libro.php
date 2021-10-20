@@ -26,9 +26,21 @@ class Libro
     public function getAutor() {return $this->autor;}
     public function getId() {return $this->idLibro;}
     public function setId($id) {$this->idLibro = $id;}
+
+    public function modificarGenero ($nuevoGenero){
+       
+            $this->genero = $nuevoGenero;
+            return true;
+     
+    }
+
+    public function actualizarGenero ($nuevoGenero){
+       
+        $this->genero = $nuevoGenero;
+        return true;
  
-
-
+}
+ 
 
     }
 

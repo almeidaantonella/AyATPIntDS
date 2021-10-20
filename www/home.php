@@ -10,6 +10,7 @@ if (isset($_SESSION['usuario'])) {
     $rl = new RepositorioLibro();
     $libros = $rl->get_all($usuario);
 
+
 } else {
     header('Location: index.php');
 }
@@ -42,9 +43,9 @@ if (isset($_SESSION['usuario'])) {
                   echo "<tr>";
                   echo "<td>$l</td>";
                   echo "<td>".$unLibro->getTitulo()."</td>";
-                  echo "<td>".$unLibro->getGenero()."</td>";
+                  echo "<td id ='generoNuevo-$l'>".$unLibro->getGenero()."</td>";
                   echo "<td>".$unLibro->getAutor()."</td>";
-                  echo "<td><button type='button' onclick='modificarGenero($l)'> Modificar Genero</button></td>";
+                  echo "<td><button type='button' onclick='cambiarGenero($l)'> Modificar Genero</button></td>";
                   echo "<td><button type='button' onclick='agregarGenero($l)'> Agregar Genero</button></td>";
                   echo "<td><a href='eliminar.php?l=$l'>Eliminar</a></td>";
                   echo "<tr>";
@@ -53,11 +54,23 @@ if (isset($_SESSION['usuario'])) {
 
             ?>
           </table>
+          
+          <div id="accion">
+            <h4 id="tipo_accion"> Acción</h4>
+            <input type="hidden" id="tipo">
+            <input type="hidden" id="numeroLibro">
+            <label for="nombre">Nombre del nuevo Genero: </label>
+            <input type="text" id="nombreGenero"><br>
+            <button type="button" onclick="accion();">Realizar Acción</button><br>
+          </div><hr>
 
         <a class="btn btn-primary" href="crear_libro.php">Agregar Libro</a>
 
         <p><a href="logout.php">Cerrar sesión</a></p>
       </div> 
     </body>
+
+    <script type="text/javascript" src="js/my-app.js"></script>
+
 </html>
 
