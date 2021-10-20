@@ -114,20 +114,21 @@ class RepositorioLibro
     }
 
 
+
 public function actualizarGenero(Libro $libro)
 
     {
-     
         $genero = $libro-> getGenero();
         $numero = $libro-> getId();
    
 
         $q = "UPDATE biblioteca SET genero = ? WHERE ID_Libro = ?";
-
         $query = self::$conexion->prepare($q);
         $query->bind_param("si", $genero,  $numero );
 
         return $query->execute();
 
     }
+
+
 }
