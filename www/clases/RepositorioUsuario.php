@@ -56,8 +56,23 @@ class RepositorioUsuario
         else {
             return false;
         }
+    }
 
 
+    // ESTE METODO ME RETORNA EL USUARIO POR SU ID 
+
+    public function get_one($id)
+    {
+        $q = "SELECT usuario, nombre, apellido FROM usuarios WHERE id = ?";
+        $query = self::$conexion->prepare($q);
+        $query->bind_param("i", $id);
+        if ( $query->execute() ) {
+            $query->bind_result($usuario, $nombre, $apellido);
+            if ( $query->fetch() ) { 
+                    return new Usuario($usuario, $nombre, $apellido, $id);
+            }
+        }
+        return false;
     }
 }
     

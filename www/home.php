@@ -8,7 +8,8 @@ if (isset($_SESSION['usuario'])) {
     $usuario = unserialize($_SESSION['usuario']);
     $nomApe = $usuario->getNombreApellido();
     $rl = new RepositorioLibro();
-    $libro = $rl->get_all($usuario);
+    $libros = $rl->get_all($usuario);
+
 
 } else {
     header('Location: index.php');
@@ -30,36 +31,46 @@ if (isset($_SESSION['usuario'])) {
         <h3>Listado de Libros</h3>
           <table class="table table-striped">
             <tr>
-            <th>Numero de Libro</th><th>Titulo del Libro</th><th>Genero</th><th>Autor</th><th>Modificar Titulo</th><th>Modificar Genero</th><th>Agregar Genero</th><th>Modificar Autor</th><th>Eliminar</th>
+            <th>Numero de Libro</th><th>Titulo del Libro</th><th>Genero</th><th>Autor</th><th>Modificar</th><th>Agregar</th><th>Eliminar</th>
             </tr>
 
             <?php
-            if (count($libro)== 0) {
-              echo "<tr><td colspan ='9'> No tiene Libros cargados</td></tr>";
+            if (count($libros)== 0) {
+              echo "<tr><td colspan ='7'> No tiene Libros cargados</td></tr>";
             } else {
-              foreach ($libro as $unlibro){
-                $lID = $unLibro->getId();
+              foreach ($libros as $unLibro){
+                $l = $unLibro->getId();
                   echo "<tr>";
-                  echo "<td>$lID</td>";
+                  echo "<td>$l</td>";
                   echo "<td>".$unLibro->getTitulo()."</td>";
-                  echo "<td>".$unLibro->getGenero()."</td>";
+                  echo "<td id ='generoNuevo-$l'>".$unLibro->getGenero()."</td>";
                   echo "<td>".$unLibro->getAutor()."</td>";
-                  echo "<td><button type='button' onclick='modificarTitulo($lID)'> Modificar Titulo</button></td>";
-                  echo "<td><button type='button' onclick='modificarGenero($lID)'> Modificar Genero</button></td>";
-                  echo "<td><button type='button' onclick='modificarAutor($lID)'> Modificar Autor</button></td>";
-                  echo "<td><button type='button' onclick='agregarGenero($lID)'> Agregar Genero</button></td>";
-                  echo "<td><a href='eliminar.php?lID=$lID'>Eliminar</a></td>";
+                  echo "<td><button type='button' onclick='modificarGenero($l)'> Modificar Genero</button></td>";
+                  echo "<td><button type='button' onclick='agregarGenero($l)'> Agregar Genero</button></td>";
+                  echo "<td><a href='eliminar.php?l=$l'>Eliminar</a></td>";
                   echo "<tr>";
               }
             }
 
             ?>
           </table>
+          
+          <div id="accion">
+            <h4 id="tipo_accion"> Acción</h4>
+            <input type="hidden" id="tipo">
+            <input type="hidden" id="numeroLibro">
+            <label for="nombre">Nombre del nuevo Genero </label>
+            <input type="text" id="nombreGenero"><br>
+            <button type="button" onclick="accion();">Realizar Acción</button>
+          </div><hr>
 
         <a class="btn btn-primary" href="crear_libro.php">Agregar Libro</a>
 
         <p><a href="logout.php">Cerrar sesión</a></p>
       </div> 
     </body>
+
+    <script type="text/javascript" src="js/my-app.js"></script>
+
 </html>
 
