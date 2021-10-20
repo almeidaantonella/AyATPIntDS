@@ -1,9 +1,9 @@
 <?php
 function credenciales() {
     return [
-        'usuario'=>'juan' ,
+        'usuario'=>'Antonella' ,
         'clave'=>'supersecreto',
         'servidor'=>'localhost',
-        'base_de_datos'=>'banco'
+        'base_de_datos'=>'trabajofianlanad'
     ];
 }
