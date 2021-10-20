@@ -127,8 +127,9 @@ public function actualizarGenero(Libro $libro)
         $query->bind_param("si", $genero,  $numero );
 
         return $query->execute();
-
     }
+
+
 
 
 }
