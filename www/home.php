@@ -10,6 +10,7 @@ if (isset($_SESSION['usuario'])) {
     $rl = new RepositorioLibro();
     $libros = $rl->get_all($usuario);
 
+
 } else {
     header('Location: index.php');
 }
