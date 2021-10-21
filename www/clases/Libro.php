@@ -40,19 +40,11 @@ class Libro
 
     public function agregarGenero ($nuevoGenero){
        
-        $this->genero = $this->genero + $nuevoGenero;
+        $this->genero = $this->genero ." / ". $nuevoGenero;
         return true;
  
     }
 
-    
-    public function  buscarGenero($buscarGenero){
-        if ($this->genero == $buscarGenero) {
-            return true;
-        } else {
-            return false;
-        }
-    }
  
 }
 

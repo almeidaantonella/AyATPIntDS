@@ -46,7 +46,3 @@ function agregarGenero(nroLibro){
     document.querySelector('#nombreGenero').focus(); 
 }
 
-function buscarGenero(){
-    var traerGenero= document.querySelector('#buscarGenero').value; 
-    console.log(traerGenero);
-}

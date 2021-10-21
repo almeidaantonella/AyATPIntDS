@@ -14,7 +14,10 @@ if (isset($_SESSION['usuario'])) {
 } else {
     header('Location: index.php');
 }
+
+
 ?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -26,10 +29,13 @@ if (isset($_SESSION['usuario'])) {
 
    
     <nav>
-    <label for="nombre">Genero:</label> 
+    <form action="" method="get">
+        <label for="nombre">Genero:</label> 
+            <input type="text" name="buscar" id= "buscarGenero"  placeholder="Buscar">
+            <a name="enviar" class="btn btn-outline" href="buscar.php" role="button"><img src='img/buscar.ico'></a>
+    </form>
+
     
-            <input type="text"  id="buscarGenero">
-            <button type="button" class="btn btn-outline-info" onclick="buscarGenero();"><img src="img/buscar.ico"></button><br>
     </nav></br>
 
     <body class="container">

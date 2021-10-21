@@ -115,7 +115,7 @@ class RepositorioLibro
 
 
 
-public function actualizarGenero(Libro $libro)
+    public function actualizarGenero(Libro $libro)
 
     {   
         $numero = $libro-> getId();
@@ -128,7 +128,6 @@ public function actualizarGenero(Libro $libro)
 
         return $query->execute();
     }
-
 
 
 
