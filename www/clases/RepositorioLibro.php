@@ -102,7 +102,6 @@ class RepositorioLibro extends Repositorio
     public function actualizarStock(Libro $libro)
     
     {
-   
         $s = $libro->getStock();
         $n=  $libro->getIdNumer();
         

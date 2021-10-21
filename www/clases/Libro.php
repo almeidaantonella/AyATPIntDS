@@ -48,7 +48,6 @@ class Libro
     public function setIdNumer($id) {
         $this->idLibro = $id;
     }
-    
 
 
     public function prestar($cantidad)
@@ -67,32 +66,6 @@ class Libro
         return true;
     }
     
-    /*public function agregarGenero ($nuevoGenero){
-       
-        $this->genero = $this->genero + $nuevoGenero;
-        return true;
- 
-    }
-
-    
-    public function  buscarGenero($buscarGenero){
-        if ($this->genero == $buscarGenero) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-        public function modificarGenero ($nuevoGenero){
-
-        if ($this->genero != $nuevoGenero) {
-            $this->genero = $nuevoGenero;
-            return true;
-        } else {
-            return false;
-        }
-     
-    }
-    */
  
 }
 
