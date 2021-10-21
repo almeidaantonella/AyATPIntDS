@@ -32,7 +32,7 @@ if (isset($_SESSION['usuario'])) {
               <label for="doc"></label> 
               <input type="text" name="doc" class="form-control" id="doc">
             </div></br>
-              <input type="submit" value="Consultar" class="btn btn-info" name="btn2">
+              <input type="submit" value="Buscar por Titulo" class="btn btn-info" name="btn2">
             </form>
     
       </br></br>

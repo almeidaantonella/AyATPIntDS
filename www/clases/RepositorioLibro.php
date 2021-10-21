@@ -98,7 +98,21 @@ class RepositorioLibro extends Repositorio
         return ($query->execute());
     }
 
+    public function actualizarStock(Libro $libro)
+   
+    {
+        $s = $libro->getStock();
+        $n=  $libro->getIdNumer();
+       
 
+        $q = "UPDATE biblioteca SET Stock = ? WHERE ID_Libro = ?";
+
+        $query = self::$conexion->prepare($q);
+        $query->bind_param("ii", $n, $s);
+
+        return $query->execute();
+    }
+    
     
   /*  public function buscar($nombre)
     
