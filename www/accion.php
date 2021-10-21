@@ -3,6 +3,7 @@ require_once 'clases/Usuario.php';
 require_once 'clases/RepositorioLibro.php';
 require_once 'clases/RepositorioUsuario.php';
 require_once 'clases/Libro.php';
+
 session_start();
 if (isset($_SESSION['usuario']) && isset($_POST['nombre_Genero'])) {
     $usuario = unserialize($_SESSION['usuario']);
@@ -28,3 +29,4 @@ if (isset($_SESSION['usuario']) && isset($_POST['nombre_Genero'])) {
     $respuesta['genero'] = $libro->getGenero();
     echo json_encode($respuesta);
 }
+

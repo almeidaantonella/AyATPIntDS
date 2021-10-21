@@ -60,14 +60,16 @@ if (isset($_SESSION['usuario'])) {
 
             ?>
           </table> </br></br>
-          
+
           <div id="accion">
             <h4 id="tipo_accion"> Acción</h4>
             <input type="hidden" id="tipo">
             <input type="hidden" id="numeroLibro">
+
             <label for="nombre">Nombre:</label> 
             <input type="text"  id="nombreGenero"></br></br>
             <button type="button"  class="btn btn-success" onclick="accion();">Realizar Acción</button><br>
+
           </div><hr>
 
           <div class="d-grid gap-2">
@@ -80,7 +82,8 @@ if (isset($_SESSION['usuario'])) {
       </div> 
     </body>
 
-    <script src="js/my-app.js"></script>
+
+    <script type="text/javascript" src="js/my-app.js"></script>
 
 
 </html>
