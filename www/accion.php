@@ -3,6 +3,7 @@ require_once 'clases/Usuario.php';
 require_once 'clases/RepositorioLibro.php';
 require_once 'clases/RepositorioUsuario.php';
 require_once 'clases/Libro.php';
+
 session_start();
 if (isset($_SESSION['usuario']) && isset($_POST['nombre_Genero'])) {
     $usuario = unserialize($_SESSION['usuario']);
@@ -13,18 +14,19 @@ if (isset($_SESSION['usuario']) && isset($_POST['nombre_Genero'])) {
     }
 
     if ($_POST['tipo'] == 'm') {
-        $r = $libro->modificarGenerom($_POST['nombre_Genero']);
+        $r = $libro->prestar($_POST['nombre_Genero']);
     } else if ($_POST['tipo'] == 'a') {
-        $r = $libro->actualizarGenero($_POST['nombre_Genero']);
+        $r = $libro->reponer($_POST['nombre_Genero']);
     }
     if ($r) {
-        $rl->actualizarGenero($libro);
+        $rl->actualizarStock($libro);
         $respuesta['resultado'] = "OK";
     } else {
         $respuesta['resultado'] = "Error al realizar la operación";
     }
 
     $respuesta['numero'] = $libro->getId();
-    $respuesta['genero'] = $libro->getGenero();
+    $respuesta['genero'] = $libro->getStock();
     echo json_encode($respuesta);
 }
+

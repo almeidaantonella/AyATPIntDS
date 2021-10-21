@@ -12,13 +12,16 @@ $usuario = unserialize($_SESSION['usuario']);
 $rl = new RepositorioLibro();
 $libro = $rl->get_one($_GET['l']);
 
-if ($rl->delete($libro)) {
-$mensaje = "Libro eliminado con éxito";
-} else {
-$mensaje = "Error al eliminar la Libro";
-}
-header("Location: home.php?mensaje=$mensaje");
-
+if($libro->getStock() != 0) {
+    header('Location: home.php?= El Stock no puede ser 0');
+    } else {
+        if ($rl->delete($libro)) {
+            $mensaje = "Libro eliminado con éxito";
+            }else {
+                $mensaje = "Error al eliminar la Libro";
+            }
+            header("Location: home.php?mensaje=$mensaje");    
+    } 
 } else {
 header('Location: index.php');
 }

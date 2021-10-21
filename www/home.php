@@ -14,10 +14,7 @@ if (isset($_SESSION['usuario'])) {
 } else {
     header('Location: index.php');
 }
-
-
 ?>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -29,13 +26,10 @@ if (isset($_SESSION['usuario'])) {
 
    
     <nav>
-    <form action="" method="get">
-        <label for="nombre">Genero:</label> 
-            <input type="text" name="buscar" id= "buscarGenero"  placeholder="Buscar">
-            <a name="enviar" class="btn btn-outline" href="buscar.php" role="button"><img src='img/buscar.ico'></a>
-    </form>
-
+    <label for="nombre">Genero:</label> 
     
+            <input type="text"  id="buscarGenero">
+            <button type="button" class="btn btn-outline-info" onclick="buscarGenero();"><img src="img/buscar.ico"></button><br>
     </nav></br>
 
     <body class="container">
@@ -43,22 +37,22 @@ if (isset($_SESSION['usuario'])) {
         <h3>Listado de Libros</h3> </br>
           <table class="table table-striped">
             <tr>
-            <th>Numero de Libro</th><th>Titulo del Libro</th><th>Genero</th><th>Autor</th><th>Modificar</th><th>Agregar</th><th>Eliminar</th>
+            <th>Numero de Libro</th><th>Titulo del Libro</th><th>Genero</th><th>Cantidad Disponibles</th><th>Prestar</th><th>Reponer</th><th>Eliminar</th>
             </tr>
 
             <?php
             if (count($libros)== 0) {
-              echo "<tr><td colspan ='7'> No tiene Libros cargados</td></tr>";
+              echo "<tr><td colspan ='8'> No tiene Libros cargados</td></tr>";
             } else {
               foreach ($libros as $unLibro){
-                $l = $unLibro->getId();
+                $l = $unLibro->getIdNumer();
                   echo "<tr>";
                   echo "<td>$l</td>";
                   echo "<td>".$unLibro->getTitulo()."</td>";
                   echo "<td id ='generoNuevo-$l'>".$unLibro->getGenero()."</td>";
-                  echo "<td>".$unLibro->getAutor()."</td>";
-                  echo "<td><button class='btn btn-outline-success' type='button' onclick='modificarGenero($l)'> <img src='img/modificar.ico'></button></td>";
-                  echo "<td><button class='btn btn-outline-success' type='button' onclick='agregarGenero($l)'><img src='img/agregar.ico'></button></td>";
+                  echo "<td>".$unLibro->getStock()."</td>";
+                  echo "<td><button class='btn btn-outline-success' type='button' onclick='prestar($l)'> <img src='img/modificar.ico'></button></td>";
+                  echo "<td><button class='btn btn-outline-success' type='button' onclick='reponer($l)'><img src='img/agregar.ico'></button></td>";
                   echo "<td><a class='btn btn-outline-danger' href='eliminar.php?l=$l' role='button'><img src='img/borrar.ico'></a></td>";
                   echo "<tr>";
               }
@@ -66,14 +60,16 @@ if (isset($_SESSION['usuario'])) {
 
             ?>
           </table> </br></br>
-          
+
           <div id="accion">
             <h4 id="tipo_accion"> Acción</h4>
             <input type="hidden" id="tipo">
             <input type="hidden" id="numeroLibro">
-            <label for="nombre">Nombre:</label> 
-            <input type="text"  id="nombreGenero"></br></br>
+
+            <label for="nombre">Cantidad:</label> 
+            <input type="number"  id="cantidad"></br></br>
             <button type="button"  class="btn btn-success" onclick="accion();">Realizar Acción</button><br>
+
           </div><hr>
 
           <div class="d-grid gap-2">
@@ -86,7 +82,8 @@ if (isset($_SESSION['usuario'])) {
       </div> 
     </body>
 
-    <script src="js/my-app.js"></script>
+
+    <script type="text/javascript" src="js/my-app.js"></script>
 
 
 </html>
