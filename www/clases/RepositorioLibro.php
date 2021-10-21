@@ -124,7 +124,7 @@ public function actualizarGenero(Libro $libro)
 
         $q = "UPDATE biblioteca SET Genero = ? WHERE ID_Libro = ?";
         $query = self::$conexion->prepare($q);
-        $query->bind_param("si", $genero,  $numero );
+        $query->bind_param("si", $genero,  $numero);
 
         return $query->execute();
     }

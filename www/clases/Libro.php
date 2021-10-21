@@ -28,19 +28,31 @@ class Libro
     public function setId($id) {$this->idLibro = $id;}
 
     public function modificarGenero ($nuevoGenero){
-       
+
+        if ($this->genero != $nuevoGenero) {
             $this->genero = $nuevoGenero;
             return true;
+        } else {
+            return false;
+        }
      
     }
 
-    public function actualizarGenero ($nuevoGenero){
+    public function agregarGenero ($nuevoGenero){
        
-        $this->genero = $nuevoGenero;
+        $this->genero = $this->genero + $nuevoGenero;
         return true;
  
-}
- 
-
     }
+
+    
+    public function  buscarGenero($buscarGenero){
+        if ($this->genero == $buscarGenero) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+ 
+}
 
